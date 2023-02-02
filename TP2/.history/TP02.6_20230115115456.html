@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <style>
+        .background{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .first-column{
+            display: flex;
+            width: 300px;
+            height:100%;
+            background-color: rgb(198, 198, 198);
+            margin: 5px;
+            flex-direction: column;
+        }
+        .second-column{
+            display: flex;
+            width: 1200px;
+            height:800px;
+            background-color: rgb(198, 198, 198);
+            flex-direction: row;
+            flex-wrap: wrap;
+            
+        }
+        div{
+            display: flex;
+            padding: 5px;
+        }
+        .box{
+            display: flex;
+            width: 250px;
+            height:300px;
+            background-color: white;
+            flex-direction: column;
+            margin:5px;
+            justify-content: center;
+            align-items: center;
+        }
+        .icon{
+            width: 150px;
+            height:150px;
+            color: grey;
+        }
+        .row{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+       
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div id="first-column" class="first-column">
+            <div>Name :</div>
+            <input id="name" type="text" placeholder="c programming"/>
+            <div>Category :</div>
+            <input id="category" type="text" placeholder="coding"/>
+            <div>Price :</div>
+            <input id="price" type="text" placeholder="1.000 riel"/>
+            <button style="width:50px;" onclick="addBook()">Add</button>
+        </div>
+        <div id="book" class="second-column">
+        </div>
+            
+            
+    </div>
+
+
+
+    <script>
+        var arrayBook= [];
+        function addBook(){
+            let json=`{"name": "${document.getElementById("name").value}", "category" : "${document.getElementById("category").value}", "price": "${document.getElementById("price").value}"}`;
+            console.log(json);
+            arrayBook.push(JSON.parse(json));
+            renderList();
+        }
+
+        function deleteBook(arrName){
+            for(var i=0;i<arrayBook.length;i++){
+                if(arrayBook[i].name=arrName){
+                    delete arrayBook[i];
+                }
+            }
+            renderList();
+        }
+
+        function changeSurvey(arrName){
+            var newName="";
+            newName=`
+                <div> New Name :</div>
+                <input id="new-name" type="text" placeholder="c programming"/>
+                <button onclick="renameBook('${arrName}')" style="width:150px;" >ChangeName</button>
+            `;
+            document.getElementById("first-column").innerHTML = newName;
+        }
+        function renameBook(arrName){
+            for(var i=0;i<arrayBook.length;i++){
+                if(arrayBook[i].name=arrName){
+                    arrayBook[i].name=document.getElementById("new-name").value;
+                };
+            }
+            renderList();
+            var basic="";
+             basic=`
+                 <div>Name :</div>
+                <input id="name" type="text" placeholder="c programming"/>
+                <div>Category :</div>
+                <input id="category" type="text" placeholder="coding"/>
+                <div>Price :</div>
+                <input id="price" type="text" placeholder="1.000 riel"/>
+                <button style="width:50px;" onclick="addBook()">Add</button>
+            `;
+            document.getElementById("first-column").innerHTML = newName;
+        }
+
+        
+
+        function renderList(){
+            var listContent="";
+            console.log(arrayBook);
+            arrayBook.forEach(arr => {
+                
+                listContent+= `
+                <div class="box">
+                    <div class="row">
+                        <button onclick="deleteBook('${arr.name}')" style="width:70px;height:20px;margin:5px;">Delete</button>
+                        <button onclick="changeSurvey('${arr.name}')" style="width:100px;height:20px;margin:5px;">Change name</button>
+                    </div>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                    </div>
+                    <div> Name : ${arr.name}</div>
+                    <div> Price : ${arr.price} riels</div>
+                    <div> Category : ${arr.category} </div>
+                </div>
+                `;
+            });
+            document.getElementById("book").innerHTML = listContent;
+        }
+      
+        
+    </script>
+    
+</body>
+</html>

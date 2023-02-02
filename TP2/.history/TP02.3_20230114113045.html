@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <style>
+        .background{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .grey-rectangle{
+            height: 600px;
+            width: 520px;
+            display :flex;
+            background-color: grey;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .display-zone{
+            display :flex;
+            width: 450px;
+            height: 450px;
+            background-color: white;
+            padding:20px;
+            margin-top: 20px;
+        }
+        .first-line{
+            display:flex;
+            color:white;
+            padding:20px;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="grey-rectangle">
+            <div class="display-zone"></div>
+            <div class="first-line">
+                Canva: Insert me an image please ! 
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        function handleImage(uploadImgFile){
+            var reader=new FileReader();
+            reader.onload= function (event){
+                var img= new Image();
+                img.onload=function () {
+                    // Draw an image here
+
+                }
+                img.src=event.target.result;
+            }
+            reader.readAsArrayBuffer(uploadImgFile);
+        }
+    </script>
+    
+</body>
+</html>

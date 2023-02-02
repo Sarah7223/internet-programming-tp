@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <style>
+            *, ::before, ::after{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                background-color: rgb(227, 237, 238);
+            }
+            .container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+            }
+            .tab-container{
+                width: 100%;
+                height: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: space-between;
+                border-bottom: 1px solid #333;
+            }
+
+        </style>
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="tab-container">
+                <div class="onglets active" data-anim="1">History</div>
+                <div class="onglets" data-anim="2">Vision</div>
+                <div class="onglets" data-anim="3">Goals</div>
+            </div>
+            <div class="contenu activeContenu" data-anim="1">
+                <h3> Lorem ipsum dolor sit amet consectetur adipisicing elit 1. </h3>
+                <p>Fugiat laboriosam ducimus alias. Mollitia saepe tempore rerum sit tempora ipsa maiores quibusdam necessitatibus! Nesciunt inventore cumque labore deleniti obcaecati qui? Recusandae.</p>
+            </div>
+            <div class="contenu activeContenu" data-anim="2">
+                <h3> Lorem ipsum dolor sit amet consectetur adipisicing elit 2. </h3>
+                <p>Fugiat laboriosam ducimus alias. Mollitia saepe tempore rerum sit tempora ipsa maiores quibusdam necessitatibus! Nesciunt inventore cumque labore deleniti obcaecati qui? Recusandae.</p>
+            </div>
+            <div class="contenu activeContenu" data-anim="3">
+                <h3> Lorem ipsum dolor sit amet consectetur adipisicing elit 3. </h3>
+                <p>Fugiat laboriosam ducimus alias. Mollitia saepe tempore rerum sit tempora ipsa maiores quibusdam necessitatibus! Nesciunt inventore cumque labore deleniti obcaecati qui? Recusandae.</p>
+            </div>
+        </div>
+        
+    </body>
+</html>

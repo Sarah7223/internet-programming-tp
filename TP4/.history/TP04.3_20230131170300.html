@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+    <head>
+        <style>
+            .background{
+                height: 100%;
+                width:100%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            .button-container{
+                display:flex;
+                width: 200px;
+                /*space-between;*/
+            }
+            h2{
+                color: green;
+                font-size: 50px;
+            }
+            button{
+                width: 100px;
+                height: 50px;
+                padding: 5px;
+                border-radius: 10px;
+
+            }
+            button:hover{
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="background">
+            <h1>Counter</h1>
+            <h2 class="counter-display">0</h2>
+            <div class="button-container">
+                <button id="increase">Increase</button>
+                <button id="decrease">Decrease</button>
+                <button id="reset">Reset</button>
+            </div>
+            
+
+        </div>
+
+        <script>
+            class Counter{
+                number=0;
+                display= document.querySelector('.counter-display');
+                constructor(){
+                    localStorage.setItem('counter',this.number);
+                    this.printNumber();
+
+                }
+                decrease(){
+                    this.number=this.number-1;
+                    localStorage.setItem('counter',this.number);
+                    this.printNumber();
+                }
+                increase(){
+                    this.number=this.number+1;
+                    localStorage.setItem('counter',this.number);
+                    this.printNumber();
+
+                }
+                reset(){
+                    this.number=0;
+                    localStorage.setItem('counter',this.number);
+                    this.printNumber();
+
+                }
+                printNumber(){
+                    this.display.textContent=localStorage.getItem('counter');
+                    this.printNumber();
+                }
+            }
+            const count= new Counter();
+            const increaseBtn=document.querySelector("#increase");
+            const decreaseBtn=document.querySelector("#decrease");
+            const resetBtn=document.querySelector("#reset");
+            increaseBtn.addEventListener('click',e=> {count.increase()});
+            decreaseBtn.addEventListener('click',e=> {count.decrease()});
+            resetBtn.addEventListener('click',e=> {count.reset()});
+        </script>
+
+    </body>
+</html

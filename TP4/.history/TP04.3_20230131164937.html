@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <head>
+        <style>
+            .background{
+                height: 100%;
+                width:100%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            .button-container{
+                display:flex;
+            }
+            h2{
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="background">
+            <h1>Counter</h1>
+            <h2 class="counter-display">0</h2>
+            <div class="button-container">
+                <button id="increase">Increase</button>
+                <button id="decrease">Decrease</button>
+                <button id="reset">Reset</button>
+            </div>
+            
+
+        </div>
+
+        <script>
+            class Counter{
+                number=0;
+                display= document.querySelector('.counter-display');
+                constructor(){
+                    console.log("fonction bien appelée");
+                    this.number=0;
+                }
+                decrease(){
+                    console.log("fonction bien appelée");
+                    this.number=this.number-1;
+                    this.display.textContent= this.number;
+                }
+                increase(){
+                    console.log("fonction bien appelée");
+                    this.number=this.number+1;
+                    this.display.textContent= this.number;
+                }
+                reset(){
+                    console.log("fonction bien appelée");
+                    this.number=0;
+                    this.display.textContent= this.number;
+                }
+            }
+            const count= new Counter();
+            const increaseBtn=document.querySelector("#increase");
+            const decreaseBtn=document.querySelector("#decrease");
+            const resetBtn=document.querySelector("#reset");
+            increaseBtn.addEventListener('click',count.increase());
+            decreaseBtn.addEventListener('click',count.decrease());
+            resetBtn.addEventListener('click',count.reset());
+        </script>
+
+    </body>
+</html

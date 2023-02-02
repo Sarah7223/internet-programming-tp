@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <style>
+        .background {
+            display:flex;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .title{
+            align-items: center;
+        }
+        .pannel{
+            margin-top:20px;
+            display:flex;
+            width: 90%;
+            height: 100px;
+            background-color: grey;
+            border-radius:20px;
+            flex-direction: row;
+            justify-content: space-between;
+            padding:20px;
+
+        }
+        .task{
+             display:flex;
+             flex-direction: column;
+        }
+        input{
+             border-radius:20px;
+             height: 40px;
+        }
+        .but1{
+            display:flex;
+            align-self: flex-end;
+            background-color: rgb(52, 117, 196);
+            height: 40px;
+            width: 70px;
+            border-radius:10px;
+            color: white;
+            text-align: center;
+            justify-content: center;
+
+        }
+        .line{
+            width: 90%;
+            height: 50px;
+            background-color: red;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding:20px;
+            border-radius:10px;
+            margin: 20px;
+        }
+        div{
+            display: flex;
+        }
+        
+      
+    </style>
+</head>
+ 
+<body>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+   <div class="background">
+        <div class=" font-bold title">
+            To-do List with LocalStorage
+        </div>
+        <div class="pannel">
+            <div class="task">
+                Task Title
+                <input type="text" placeholder="    Title"/>
+            </div>
+            <div class="task">
+                Assignee
+                <input type="text" placeholder="    John"/>
+            </div>
+            <div class="task">
+                Dateline
+                <input type="text" placeholder="    John"/>
+            </div>
+            <div class="task but1">
+                <button type="button">Add</button>
+            </div>
+        </div>
+
+        <div class="line">
+            <div> Create project </div>
+            <div> Tola </div>
+            <div> 22/2/2022 </div>
+            <div>Bin</div>
+           
+
+        </div>
+
+        
+   </div>
+</body>
+ 
+</html>

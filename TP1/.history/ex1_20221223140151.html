@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .div{
+                border-spacing: 0px;
+                padding: 0px;
+            }
+            .box1{
+                background-color: red;
+                height: 200px;
+                width: 300px;
+            }
+            .box2{
+                background-color: grey;
+                height: 200px;
+                width: 900px;
+            }
+            .box3{
+                background-color: green;
+                height: 200px;
+                width: 300px;
+            }
+            .box4{
+                background-color: blue;
+                height: 400px;
+                width: 300px;
+            }
+            .box5{
+                background-color: pink;
+                height: 400px;
+                width: 300px;
+            }
+            .box6{
+                background-color: red;
+                height: 400px;
+                width: 300px;
+            }
+            .box7{
+                background-color: purple;
+                height: 200px;
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tbody>
+                <tr> 
+                    <td>
+                        <div class="box1"></div></td>
+                    <td colspan="3">
+                        <div class="box2"></div></td>
+                </tr>
+                <tr>
+                    <td >
+                        <div class="box3"></div>
+                    </td>
+                    <td rowspan="2">
+                        <div class="box4"></div>
+                    </td>
+                    <td rowspan="2">
+                        <div class="box5"></div>
+                    </td>
+                    <td rowspan="2">
+                        <div class="box6"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="box7"></div>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+            
+    </body>
+</html>

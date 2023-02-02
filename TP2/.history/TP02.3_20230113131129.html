@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script>
+        function handleImage(uploadImgFile){
+            var reader=new FileReader();
+            reader.onload= function (event){
+                var img= new Image();
+                img.onload=function () {
+                    // Draw an image here
+
+                }
+                img.src=event.target.result;
+            }
+            reader.readAsArrayBuffer(uploadImgFile);
+        }
+    </script>
+    
+</body>
+</html>

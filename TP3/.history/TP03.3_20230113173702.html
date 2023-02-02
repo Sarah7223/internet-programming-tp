@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <style>
+        .background {
+            display:flex;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .title{
+            align-items: center;
+        }
+        .pannel{
+            margin-top:20px;
+            display:flex;
+            width: 90%;
+            height: 100px;
+            background-color: rgb(183, 180, 180);
+            border-radius:20px;
+            flex-direction: row;
+            justify-content: space-between;
+            padding:20px;
+
+        }
+        .column{
+             display:flex;
+             flex-direction: column;
+        }
+        .list-wrapper{
+            display:flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        input{
+             border-radius:20px;
+             width: 200px;
+             height: 40px;
+             padding:20px;
+        }
+        .but1{
+            display:flex;
+            align-self: flex-end;
+            background-color: rgb(30, 72, 124);
+            height: 40px;
+            width: 200px;
+            border-radius:10px;
+            color: white;
+            text-align: center;
+            justify-content: center;
+
+        }
+        .line{
+            width: 90%;
+            height: 50px;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding:20px;
+            border-radius:10px;
+            margin: 20px;
+            border: 2px solid #7c7c7e;
+
+        }
+        div{
+            display: flex;
+        }
+        .trash{
+            display:flex;
+            flex-direction: row;
+            color:white;
+            background-color: rgb(192, 60, 60);
+            width: 230px;
+            height: 30px;
+        }
+        
+      
+    </style>
+</head>
+ 
+<body>
+
+   <div class="background">
+        <div class=" font-bold title">
+            Cookie Management
+        </div>
+        <div class="pannel">
+            <div class="column">
+                Key
+                <input id="task" style="padding:20px;" type="text" placeholder="Key"/>
+            </div>
+            <div class="column">
+                Value
+                <input id="assignee" style="padding:20px;" type="text" placeholder="Value"/>
+            </div>
+            <div class="column">
+                Expired     
+                <input id="date" style="padding:20px;" type="date"/>
+            </div>
+            <div class="column but1">
+                <button onclick="addCookie()" id="add" type="button">Add</button>
+            </div>
+        </div>
+
+        <div class="list-wrapper" id="list-wrapper">
+ 
+        </div>
+
+        
+   </div>
+
+   <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+
+        let listWrapperEle = document.getElementById("list-wrapper");
+
+        function addCookie(){
+            console.log(document.cookie);
+            var myobject = {key: document.getElementById("task").value , value:document.getElementById("assignee").value, expiration_date: document.getElementById("date").value};    
+            var d= new Date(myobject.expiration_date);
+            let expires = "expires="+ d.toUTCString();
+            console.log(expires);
+            document.cookie = myobject.key + "=" + myobject.value + ";" + expires + ";path=/";
+            console.log(document.cookie);
+            renderList();
+        }
+
+        function remove(key){
+            console.log("c bien appuyé");
+            console.log(key);
+
+            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            //renderList();
+
+        }
+
+
+        function renderList(){
+            let taskArr = [];
+            //create the array with the object saved in the local storage
+            var theCookies = document.cookie.split(';');
+            for (var i = 0 , len =theCookies.length; i < len;  i++) {
+                console.log( theCookies[i] );
+                //fdf=fg
+                const parts = theCookies[i].split('=');
+                console.log(parts[0]);
+                console.log(parts[1]);
+                taskArr.push({key:parts[0],value:parts[1]});
+            }
+            var listContent="";
+            taskArr.forEach(taskArr => {
+                listContent+= `
+                <div class="line">
+                    <div> ${taskArr.key} </div>
+                    <div> ${taskArr.value} </div>
+                    <div class="trash">
+                        Set expired
+                        <svg onclick="remove('${taskArr.key}')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                        </svg>                  
+                    </div>  
+                </div>
+                `;
+            });
+            document.getElementById("list-wrapper").innerHTML = listContent;
+        }
+        //renderList();
+        
+    </script>
+</body>
+
+ 
+</html>

@@ -1,0 +1,157 @@
+<html>
+
+<head>
+    <style>
+        .background{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .grey-rectangle{
+            height: 600px;
+            width: 520px;
+            display :flex;
+            background-color: grey;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .display-zone{
+            display :flex;
+            width: 450px;
+            height: 450px;
+            background-color: white;
+            padding:20px;
+            margin-top: 20px;
+        }
+        .first-line{
+            display:flex;
+            color:white;
+            padding:20px;
+            text-align: center;
+        }
+        .second-line{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-items: center;
+        }
+        .btn{
+            background-color: white;
+            padding: 5px;
+        }
+        .image-name{
+            color: white;
+            margin-left: 10px;
+        }
+        #out {
+            width: 450px; 
+            height: 450px; 
+            object-fit: contain; 
+            display: block;
+        }
+
+        /* hide if it would show the error img */
+        #out[src=''] {
+        
+            opacity: 0;
+        }
+        .image{
+            width: 450px; 
+            height: 450px; 
+            background-color: white;
+        }
+        .multi-projection{
+            height: 600px;
+            width: 600px;
+            display :flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 15px;
+        }
+        .title{
+            background-color: black;
+            color: white;
+        }
+        .small-canva{
+            border: solid black 1px;
+            margin: 5px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="grey-rectangle">
+            <div class="image">
+                <video autoplay style="display:none;"></video>
+                <canvas id="input-canvas" width="450px" height="450px"></canvas>
+            </div>
+            <div class="first-line">
+                Please show your face on me
+            </div>
+            <div class="second-line">
+                <button id="btn" onclick="stop()" class="btn">Pause</button>
+            </div>
+        </div>
+        <div class="multi-projection">
+            <div class="title">Multi projection with canvases</div>
+            <div class="multiple-canvas">
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+                <canvas class="small-canva" id="canva1" width="150p" height="150px" ></canvas>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        var playing=true;
+        var vid=document.querySelector("video");
+        navigator.mediaDevices.getUserMedia({
+            audio:false,
+            video:true
+        }).then((stream) =>{
+            vid.srcObject=stream;
+        }).catch((err)=>{
+            console.log('navigator.MediaDevices.getUserMedia error: ',err.message,err.name);
+        });
+
+        (function loop(){
+            if(playing){
+                var canvas=document.querySelector("canvas");
+                let ctx = canvas.getContext('2d');
+                ctx.drawImage(vid,0,0,canvas.width,canvas.height);
+                setTimeout(loop,1000/30);
+            }
+        })();
+        function stop(){
+            playing=false;
+        }
+        let src=cv.imread('input-canvas');
+        let dst= cv.Mat();
+        let rect=new cv.Rect(0,0,100,100);
+        dst=rc.roi(rect);
+        cv.imshow('ouput-canvas',dst);
+        
+    </script>
+    
+</body>
+</html>

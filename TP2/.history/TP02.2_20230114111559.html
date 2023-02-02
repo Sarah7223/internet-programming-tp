@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <style>
+        .background{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            justify-content: center;
+            
+        }
+        #btn{
+            position: absolute;
+            transition: .5s;
+            position: absolute;
+            transition: .5s;
+            display: flex;
+            height: 30px;
+            width: 100px;
+            background-color: white;
+            border-radius: 5px;
+            justify-content: center;
+            align-items: center;
+            top:30px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="background">
+        <div id="btn" >Click Me &#x1F602;</div>
+    </div>
+
+    <!-- <script src="../tween.js/dist/tween.umd.js"></script> -->
+    <script>
+
+        //document.querySelector(".button").addEventListener('mouseover',(e)=> {console.log('test')});
+
+        const button = document.getElementById('btn');
+        button.addEventListener('mouseover', function () {
+            button.moveFromSourceToDest(0,0,200,150);
+            console.log('you mouseover me')
+        });
+        button.addEventListener('click', function () {
+            alert('you clicked me')
+        })
+
+        function animate(time){
+            requestAnimationFrame(animate)
+            TWEEN.update(time)
+        }
+        requestAnimationFrame(animate)
+
+        const moveFromSourceToDest = (startX, startY,EndX,EndY) => {
+            const coords={x:startX,y:startY}
+            const tween=new TWEEN.Tween()
+                .to({x: EndX, y: EndY},1000)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .onUpdate( () => {
+                    console.log(`${coords.x}px, ${coords.y}px`);
+                })
+                .start()
+        }
+        moveFromSourceToDest(0,0,200,150);
+
+    </script>
+    
+</body>
+</html>

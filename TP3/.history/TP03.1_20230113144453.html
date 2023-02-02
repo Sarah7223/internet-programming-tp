@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <style>
+        .background {
+            display:flex;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .title{
+            align-items: center;
+        }
+        .pannel{
+            margin-top:20px;
+            display:flex;
+            width: 90%;
+            height: 100px;
+            background-color: rgb(183, 180, 180);
+            border-radius:20px;
+            flex-direction: row;
+            justify-content: space-between;
+            padding:20px;
+
+        }
+        .column{
+             display:flex;
+             flex-direction: column;
+        }
+        input{
+             border-radius:20px;
+             height: 40px;
+             padding:20px;
+        }
+        .but1{
+            display:flex;
+            align-self: flex-end;
+            background-color: rgb(30, 72, 124);
+            height: 40px;
+            width: 70px;
+            border-radius:10px;
+            color: white;
+            text-align: center;
+            justify-content: center;
+
+        }
+        .line{
+            width: 90%;
+            height: 50px;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding:20px;
+            border-radius:10px;
+            margin: 20px;
+            border: 2px solid #7c7c7e;
+
+        }
+        div{
+            display: flex;
+        }
+        .trash{
+            width: 30px;
+            height: 30px;
+        }
+        
+      
+    </style>
+</head>
+ 
+<body>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+         // Store
+        localStorage.lastname = "Smith";
+        // Retrieve
+        document.getElementById("result").innerHTML = localStorage.lastname;
+
+        function addToLocalStorage(){
+            var myobject = {task_title: document.getElementById("task").value , assignee:document.getElementById("assignee").value, date: document.getElementById("date").value};
+            localStorage.setItem("todo",JSON.stringify(myobject));
+        }
+
+        
+    </script>
+
+   <div class="background">
+        <div class=" font-bold title">
+            To-do List with LocalStorage
+        </div>
+        <div class="pannel">
+            <div class="column">
+                Task Title
+                <input id="task" style="padding:20px;" type="text" placeholder="Title"/>
+            </div>
+            <div class="column">
+                Assignee
+                <input id="assignee" style="padding:20px;" type="text" placeholder="    John"/>
+            </div>
+            <div class="column">
+                Dateline
+                <input id="date" style="padding:20px;" type="date"/>
+            </div>
+            <div class="column but1">
+                <button onclick="addToLocalStorage()" id="add" type="button">Add</button>
+            </div>
+        </div>
+
+        <div class="line">
+            <div> Create project </div>
+            <div> Tola </div>
+            <div> 22/2/2022 </div>
+            <div class="trash">
+                <input type="image">
+                   
+                  
+                </input>
+            </div>
+            
+           
+
+        </div>
+
+        
+   </div>
+</body>
+ 
+</html>

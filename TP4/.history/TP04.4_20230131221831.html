@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+    <head>
+        <style>
+            .background{
+                height: 100%;
+                width:100%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="background">
+        </div>
+
+        <script>
+            class Color{
+                colorType='';
+                records=[];
+                constructor(type){
+                    this.colorType=type;
+                }
+                generate(){
+
+                }
+                getRandomNumber(){
+
+                }
+                getRecords(){
+
+                }
+                reset(){
+                    
+                }
+               
+            }
+            const count= new Counter();
+            const increaseBtn=document.querySelector("#increase");
+            const decreaseBtn=document.querySelector("#decrease");
+            const resetBtn=document.querySelector("#reset");
+            increaseBtn.addEventListener('click',e=> {count.increase()});
+            decreaseBtn.addEventListener('click',e=> {count.decrease()});
+            resetBtn.addEventListener('click',e=> {count.reset()});
+        </script>
+
+    </body>
+</html

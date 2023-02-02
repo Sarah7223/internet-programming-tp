@@ -1,0 +1,137 @@
+<html>
+
+<head>
+    <style>
+        .background{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .grey-rectangle{
+            height: 620px;
+            width: 520px;
+            display :flex;
+            background-color: grey;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .display-zone{
+            display :flex;
+            width: 450px;
+            height: 450px;
+            background-color: white;
+            padding:20px;
+            margin-top: 20px;
+        }
+        .first-line{
+            display:flex;
+            color:white;
+            padding:20px;
+            text-align: center;
+        }
+        .second-line{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-items: center;
+        }
+        .btn{
+            background-color: white;
+            padding: 5px;
+        }
+        .image-name{
+            color: white;
+            margin-left: 10px;
+        }
+        #out {
+            width: 450px; 
+            height: 450px; 
+            object-fit: contain; 
+            display: block;
+        }
+
+        /* hide if it would show the error img */
+        #out[src=''] {
+            background-color: white;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="grey-rectangle">
+            <img src="" id="out" />
+            <div class="first-line">
+                Canva: Insert me an image please ! 
+            </div>
+            <div class="second-line">
+                <button class="btn" onClick="onClickHandler(event)">Choose File</button>
+                <div class="image-name">No file chosen</div>
+            </div>
+            
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        const button = document.getElementById('btn');
+        button.addEventListener('click', function () {
+            
+            console.log('you clicked me')
+        });
+
+        function handleImage(uploadImgFile){
+            var reader=new FileReader();
+            reader.onload= function (event){
+                var img= new Image();
+                img.onload=function () {
+                    // Draw an image here
+
+                }
+                img.src=event.target.result;
+            }
+            reader.readAsArrayBuffer(uploadImgFile);
+        }
+
+        function onClickHandler(ev) {
+            var el = window._protected_reference = document.createElement("INPUT");
+            el.type = "file";
+            el.accept = "image/*";
+            el.multiple = "multiple"; // remove to have a single file selection
+            
+            // (cancel will not trigger 'change')
+            el.addEventListener('change', function(ev2) {
+                // access el.files[] to do something with it (test its length!)
+                
+                // add first image, if available
+                if (el.files.length) {
+                document.getElementById('out').src = URL.createObjectURL(el.files[0]);
+                }
+
+
+                // test some async handling
+                new Promise(function(resolve) {
+                setTimeout(function() { console.log(el.files); resolve(); }, 1000);
+                })
+                .then(function() {
+                // clear / free reference
+                el = window._protected_reference = undefined;
+                });
+
+            });
+
+            el.click(); // open
+        }
+    </script>
+    
+</body>
+</html>

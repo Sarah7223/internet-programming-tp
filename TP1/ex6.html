@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <style>
+          *{
+            color : white;
+            padding : 10px;
+            text-align: center;
+          }  
+          .content{
+            display: flex;
+            justify-content: center;
+            align-items: center;      
+          }
+          .big{
+            background-color: green;
+            visibility: visible;
+          }
+          .small{
+            background-color: red;
+            visibility: hidden;
+          }
+          @media only screen and (min-height: 400px) {
+            .big {
+                visibility: hidden;
+             }
+             .small{
+                visibility: visible;
+             }
+        }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="content">
+                <span class="small">I'm SMALL &#x1F625;</span>
+                <span class="big">I'm BIG &#x1F626; </ji:sh>  </span>
+            </div>
+            
+        </div>
+    </body>
+</html>

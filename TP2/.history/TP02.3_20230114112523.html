@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <style>
+        .background{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .grey-rectangle{
+            height: 90%;
+            width: 50%;
+            display :flex;
+            background-color: grey;
+            direction: column;
+            justify-content: center;
+
+        }
+        .display-zone{
+            width: 400px;
+            height: 400px;
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="grey-rectangle">
+            <div class="display-zone">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        function handleImage(uploadImgFile){
+            var reader=new FileReader();
+            reader.onload= function (event){
+                var img= new Image();
+                img.onload=function () {
+                    // Draw an image here
+
+                }
+                img.src=event.target.result;
+            }
+            reader.readAsArrayBuffer(uploadImgFile);
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+    <head>
+        <style>
+            *, ::before, ::after{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                background-color: rgb(227, 237, 238);
+            }
+            .background{
+                height: 600px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+            }
+            .image{
+                margin-top: 20px;;
+            }
+            .container{
+                position: absolute;
+            }
+            .tab-container{
+                width:660px;
+                height: 30%;
+                display: flex;
+                justify-content: center;
+                border-bottom: 1px solid #333;
+            }
+            .onglets{
+                width:220px;
+                background-color: rgb(208, 206, 206);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size:22px;
+                cursor: pointer;
+            }
+            .contenu{
+                height: 200px;
+                width: 100%;
+                background-color: white;
+                position: absolute;
+                padding: 20px;
+                opacity: 0;
+            }
+            /* Animation */
+            .active{
+                background-color: white;
+                transition : all 0.3 ease;
+            }
+            .activeContenu{
+
+                animation: fade 0.5s forwards;
+            }
+            @keyframes fade {
+                from {
+                    opacity: 0;
+                }
+                to{
+                    opacity: 1;
+                }
+            }
+            
+
+
+        </style>
+        
+    </head>
+    <body>
+        <div class="background">
+            <h1>About </h1>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+            <img class="image" src="./landscape.png">
+            <div class="container">
+                <div class="tab-container">
+                    <div class="onglets active" data-anim="1">History</div>
+                    <div class="onglets" data-anim="2">Vision</div>
+                    <div class="onglets" data-anim="3">Goals</div>
+                </div>
+                <div class="contenu activeContenu" data-anim="1">
+                    <h3> Lorem ipsum dolor sit amet consectetur adipisicing elit 1. </h3>
+                    <p>Fugiat laboriosam ducimus alias. Mollitia saepe tempore rerum sit tempora ipsa maiores quibusdam necessitatibus! Nesciunt inventore cumque labore deleniti obcaecati qui? Recusandae.</p>
+                </div>
+                <div class="contenu" data-anim="2">
+                    <h3> Lorem ipsum dolor sit amet consectetur adipisicing elit 2. </h3>
+                    <p>Fugiat laboriosam ducimus alias. Mollitia saepe tempore rerum sit tempora ipsa maiores quibusdam necessitatibus! Nesciunt inventore cumque labore deleniti obcaecati qui? Recusandae.</p>
+                </div>
+                <div class="contenu" data-anim="3">
+                    <h3> Lorem ipsum dolor sit amet consectetur adipisicing elit 3. </h3>
+                    <p>Fugiat laboriosam ducimus alias. Mollitia saepe tempore rerum sit tempora ipsa maiores quibusdam necessitatibus! Nesciunt inventore cumque labore deleniti obcaecati qui? Recusandae.</p>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        const onglets= document.querySelectorAll('.onglets');
+        const contenu=document.querySelectorAll('.contenu');
+        let index=0;
+        onglets.forEach(onglet => {
+            console.log(onglet);
+            onglet.addEventListener('click',()=>{
+                if(onglet.classList.contains('active')){
+                    return;
+                }
+                else{
+                    onglet.classList.add('active');
+
+                }
+                index=onglet.getAttribute('data-anim');
+                console.log(index);
+
+                for(i=0;i<onglets.length;i++){
+                    if(onglets[i].getAttribute('data-anim')!=index){
+                        onglets[i].classList.remove('active');
+                    }
+                }
+                for(j=0;j<contenu.length;j++){
+                    if(contenu[j].getAttribute('data-anim') == index){
+                        contenu[j].classList.add('activeContenu');
+                    }
+                    else{
+                        contenu[j].classList.remove('activeContenu');
+                    }
+                }
+                
+            })
+        })
+    </script>    
+        
+    </body>
+</html>

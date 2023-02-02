@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <style>
+        .background{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            justify-content: center;
+            
+        }
+        .button{
+            position: absolute;
+            display: flex;
+            height: 30px;
+            width: 100px;
+            background-color: white;
+            border-radius: 5px;
+            justify-content: center;
+            align-items: center;
+            top:30px;
+
+        }
+    </style>
+</head>
+<body>
+    <script src="js/tween.umd.js">
+        document.querySelector(".button").addEventListener("onmouseover",(e)=> {console.log('test')});
+        function animate(time){
+            requestAnimationFrame(animate)
+            TWEEN.update(time)
+        }
+        requestAnimationFrame(animate)
+
+        const moveFromSourceToDest = (startX, startY,EndX,EndY) => {
+            const coords={x:startX,y:startY}
+            const tween=new TWEEN.Tween()
+                .to({x: EndX, y: EndY},1000)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .onUpdate( () => {
+                    console.log(`${coords.x}px, ${coords.y}px`);
+                })
+                .start()
+        }
+        moveFromSourceToDest(0,0,200,150);
+
+    </script>
+    <div class="background">
+        <div class="button">
+            <div>Click Me &#x1F602;</div>
+        </div>
+    </div>
+    
+</body>
+</html>

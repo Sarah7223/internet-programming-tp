@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <style>
+        .background {
+            display:flex;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .title{
+            align-items: center;
+        }
+        .pannel{
+            margin-top:20px;
+            display:flex;
+            width: 90%;
+            height: 100px;
+            background-color: grey;
+            border-radius:30px;
+            flex-direction: row;
+            justify-content: space-between;
+            padding:20px;
+
+        }
+        .task{
+             display:flex;
+             flex-direction: column;
+        }
+        input{
+             border-radius:20px;
+             height: 40px;
+        }
+        .but1{
+            display:flex;
+            background-color: blue;
+            height: 50px;
+            width: 100px;
+        }
+        .line{
+            width: 90%;
+            height: 50px;
+            background-color: red;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding:20px;
+            margin-top: 20px;
+        }
+        
+      
+    </style>
+</head>
+ 
+<body>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+   <div class="background">
+        <div class=" font-bold title">
+            To-do List with LocalStorage
+        </div>
+        <div class="pannel">
+            <div class="task">
+                Task Title
+                <input type="text" placeholder="    Title"/>
+            </div>
+            <div class="task">
+                Assignee
+                <input type="text" placeholder="    John"/>
+            </div>
+            <div class="task">
+                Dateline
+                <input type="text" placeholder="    John"/>
+            </div>
+            <div class="task">
+                <button class="but1" type="button">Add</button>
+            </div>
+
+        </div>
+        <div class="line">
+
+        </div>
+
+        
+   </div>
+</body>
+ 
+</html>

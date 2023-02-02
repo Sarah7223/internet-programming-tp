@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <style>
+       .background {
+            display:flex;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .text{
+            display: flex;
+            align-self:flex-start;
+            margin-left : 420px;
+        }
+        .box{
+            display: flex;
+            width: 600px;
+            height: 600px;
+            border: solid 0.3em;
+            border-color: grey;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .icon{
+            width: 400px;
+            
+        }
+        .bold{
+            display: flex;
+            align-self:flex-start;
+            margin-left : 20px;
+            font-weight:bold;
+        }
+        input{
+            display: flex;
+            align-self:center;
+            border: solid 0.05em;
+            width: 95%;
+        }
+        .but{
+            margin-top: 20px;
+            display:flex;
+            background-color: rgb(63, 179, 115);
+            height: 40px;
+            width: 90%;
+            border-radius:10px;
+            color: white;
+            text-align: center;
+            justify-content: center;
+
+        }
+        .titre{
+            left: 200px;
+            display: flex;
+            font-weight: bold;
+            font-size: 30px;
+        }
+    </style>
+</head>
+ 
+<body>
+
+   <div class="background">
+    <!-- 
+        <div class="text" >Given login info:</div>
+        <div class="text">Email: gic@gmail.com</div>
+        <div class="text">Pwd: Gic123</div>
+        <div class="box">
+            <img class="icon" src="./authentification.png"/>
+       
+            <div class="bold">Email</div>
+            <input id="email" type="text" placeholder="Enter email"/>
+            <div class="bold">Password</div>
+            <input id="password" type="text" placeholder="Enter password"/>
+            <div class="but">
+                <button id="login" onclick="login()" type="button">Login</button>
+            </div>
+        </div>
+    -->
+        <div class="titre">Welcome to Home page</div>
+        <div>You will be automatically logged out after 30s</div>
+        <div>Keep refreshing your page</div>
+        <button onclick="logout()" typ="button">Logout</button>
+        
+   </div>
+
+   <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+
+        function login(){
+            if(document.getElementById("email").value=='gic@gmail.com' && document.getElementById("password").value== 'Gic123'){
+                var date = new Date();
+                date.setTime(date.getTime() + (30 * 1000));
+                var myobject = {key: document.getElementById("email").value , value:document.getElementById("password").value};    
+                let expires = "expires="+ date.toUTCString();
+                document.cookie = myobject.key + "=" + myobject.value + ";" + expires + ";path=/";
+                console.log(document.cookie);
+            }
+            
+        }
+    </script>
+</body>
+
+ 
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+    <head>
+    </head>
+    <body>
+        <div class="background">
+            <h1>Counter</h1>
+            <h2 class="counter-display">0</h2>
+            <button id="increment">Increment</button>
+            <button id="decrement">Decrement</button>
+            <button id="reset">Reset</button>
+
+        </div>
+
+        <script>
+            const count= new Counter();
+            const incrementBtn=document.querySelector("#increment");
+            const decrementBtn=document.querySelector("#decrement");
+            const resetBtn=document.querySelector("#reset");
+            incrementBtn.addEventListener('click',count.increment());
+            decrementBtn.addEventListener('click',count.decrement());
+            resetBtn.addEventListener('click',count.reset());
+
+            class Counter{
+                number=0;
+                display= document.querySelector('.counter-display');
+                
+
+                constructor(){
+                    number=0;
+                }
+                decrease(){
+                   number=number-1;
+                   display.textContent= number;
+                }
+                increase(){
+                    console.log("fonction bien appelée")
+                    number=number+1;
+                    display.textContent= number;
+                }
+                reset(){
+                    number=0;
+                    display.textContent= number;
+                }
+                
+            }
+        </script>
+
+    </body>
+</html
