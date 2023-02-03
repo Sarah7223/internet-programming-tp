@@ -1,10 +1,15 @@
 <!DOCTYPE html>
     <head>
         <style>
-
+            body {
+                position: relative;
+                overflow-x: hidden;
+                height:800px;
+                width: 1200px;
+            }
             #wrapper {
                 height:800px;
-                width:  1600px;
+                width: 1200px;
                 background-color: rgb(202, 196, 196);
             }
 
@@ -157,13 +162,11 @@
             opacity: 1;
             display: block;
             -webkit-transform: translate3d(-100px,0,0);
+            -webkit-transition: all .35s ease-in-out;
             }
             .icons{
                 display: flex;
                 height: 20px;
-            }
-            ul {
-                list-style-type: none;
             }
         </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -172,7 +175,7 @@
     <body>
         <div id="wrapper">
         <div class="overlay"></div>
-
+    
              <!-- Sidebar -->
          <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
           <ul class="nav sidebar-nav">

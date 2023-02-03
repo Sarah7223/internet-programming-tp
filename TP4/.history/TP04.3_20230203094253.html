@@ -11,10 +11,10 @@
             }
             .button-container{
                 display:flex;
-                flex-direction: row;
                 width:100%;
                 margin-bottom: 40px;
-                justify-content: space-around;
+                justify-content: space-between;
+                flex-direction: column;
                 align-items: center;
                 /*space-between;*/
             }
@@ -23,6 +23,8 @@
                 font-size: 50px;
             }
             button{
+                width: 100px;
+                height: 50px;
                 padding: 5px;
                 border-radius: 10px;
 
@@ -33,7 +35,7 @@
             }
             .rectangle{
             margin-top: 10px;
-            height:600px;
+            height:80%;
             width:30%;
             display: flex;
             flex-direction: column;
@@ -54,13 +56,14 @@
                     <button id="reset">Reset</button>
                 </div>
             </div>
+            
         </div>
 
         <script>
             class Counter{
+                number=0;
                 display= document.querySelector('.counter-display');
                 constructor(){
-                    this.number=localStorage.getItem('counter');
                     localStorage.setItem('counter',this.number);
                     this.printNumber();
                 }
@@ -93,5 +96,6 @@
             decreaseBtn.addEventListener('click',e=> {count.decrease()});
             resetBtn.addEventListener('click',e=> {count.reset()});
         </script>
+
     </body>
 </html

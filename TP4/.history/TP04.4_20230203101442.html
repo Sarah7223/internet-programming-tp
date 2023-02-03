@@ -8,7 +8,7 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
-                background-color: white;
+                background-color: #ededf1;
             }
            .rectangle{
                 display: flex;
@@ -30,7 +30,7 @@
                 color: #68c5ea;
                 width: -webkit-fill-available;
                 height: 50px;
-                border: solid 1px black;
+                border: solid rgb(0, 0, 0) 1px;
                 background-color: #FFFFFF;
                 padding: 3%;
                 font-weight: bold;
@@ -105,10 +105,10 @@
                     <div id="color"></div>
                 </div>
                 <div class="buttons">
-                    <button class="button" id="generate">Generate</button>
-                    <button class="button" id="reset">Reset</button>
+                    <button class="button" id="generate">GENERATE</button>
+                    <button class="button" id="reset">RESET</button>
                 </div>
-                <div id="list-color"></div>
+                <div id="list-color">hello</div>
             </div>
         </div>
 
@@ -157,6 +157,7 @@
                 c.generate();
                 document.getElementById("color").innerHTML=c.colorType;
                 document.getElementById("menu-container").style.backgroundColor=c.colorType;
+                document.getElementById("generate").style.backgroundColor=c.colorType;
                 document.getElementById("reset").style.backgroundColor=c.colorType;
                 var listHtml="";
                 c.getRecords().forEach(elt=>{
@@ -168,9 +169,11 @@
                 document.getElementById("list-color").innerHTML=listHtml;
                 c.getRecords().forEach(elt=>{
                 document.getElementById(elt).addEventListener("click",e=>{
+                    console.log(elt);
                     c.colorType = "#"+elt;
                     document.getElementById("color").innerHTML=c.colorType;
                     document.getElementById("menu-container").style.backgroundColor=c.colorType;
+                    document.getElementById("generate").style.backgroundColor=c.colorType;
                     document.getElementById("reset").style.backgroundColor=c.colorType;
                 });
            });
@@ -178,16 +181,20 @@
            document.getElementById("reset").addEventListener("click",e=>{
                 c.reset();
                 console.log("rec",c.getRecords());
+                console.log(c.colorType);
                 document.getElementById("color").innerHTML=c.colorType;
                 document.getElementById("menu-container").style.backgroundColor=c.colorType;
+                document.getElementById("generate").style.backgroundColor=c.colorType;
                 document.getElementById("reset").style.backgroundColor=c.colorType;
                 var listHtml="";
                 document.getElementById("list-color").innerHTML=listHtml;
                 localStorage.removeItem("records");
            });
            console.log(c.getRecords());
+           console.log(c.colorType);
            document.getElementById("color").innerHTML=c.colorType;
            document.getElementById("menu-container").style.backgroundColor=c.colorType;
+           document.getElementById("generate").style.backgroundColor=c.colorType;
            document.getElementById("reset").style.backgroundColor=c.colorType;
            var listHtml="";
            c.getRecords().forEach(elt=>{
@@ -203,6 +210,7 @@
                     c.colorType = "#"+elt;
                     document.getElementById("color").innerHTML=c.colorType;
                     document.getElementById("menu-container").style.backgroundColor=c.colorType;
+                    document.getElementById("generate").style.backgroundColor=c.colorType;
                     document.getElementById("reset").style.backgroundColor=c.colorType;
                 });
            });
