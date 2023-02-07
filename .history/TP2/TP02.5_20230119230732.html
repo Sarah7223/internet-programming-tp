@@ -18,6 +18,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
         }
         .display-zone{
             display :flex;
@@ -81,11 +82,26 @@
             border: solid black 1px;
             margin: 5px;
         }
+
+
+
     </style>
 </head>
 <body>
     <div class="background">
-        <div class="grey-rectangle"> 
+        <div class="grey-rectangle">
+            <div class="image">
+                <video autoplay style="display:none;"></video>
+                <canvas id="canvas" width="450px" height="450px"></canvas>
+            </div>
+            <div class="first-line">
+                Please show your face on me
+            </div>
+            <div class="second-line">
+                <button id="btn" onclick="stop()" class="btn">Pause</button>
+            </div>
+        </div>
+        <!-- 
         <div class="multi-projection">
             <div class="title">Multi projection with canvases</div>
             <div class="multiple-canvas">
@@ -98,15 +114,18 @@
                 <canvas class="small-canva" id="canvas7" width="150p" height="150px" ></canvas>
                 <canvas class="small-canva" id="canvas8" width="150p" height="150px" ></canvas>
                 <canvas class="small-canva" id="canvas9" width="150p" height="150px" ></canvas>
+
+
             </div>
             </div>
-        <div class="second-line">
-            <button id="btn" onclick="stop()" class="btn">Pause</button>
-        </div>
-        </div>
+-->
+        
     </div>
 
+
+
     <script src="./opencv.js" type="text/javascript">
+        /*
         var playing=true;
         var vid=document.querySelector("video");
         navigator.mediaDevices.getUserMedia({
@@ -130,7 +149,9 @@
             if(playing){
                 var canvas=document.querySelector("canvas");
                 let ctx = canvas.getContext('2d');
+
                 ctx.drawImage(vid,0,0,canvas.width,canvas.height);
+
                 drawSquare(1,0,0);
                 drawSquare(2,1,0);
                 drawSquare(3,2,0);
@@ -140,6 +161,7 @@
                 drawSquare(7,0,2);
                 drawSquare(8,1,2);
                 drawSquare(9,2,2);
+
                 setTimeout(loop,1000/30);
             }
         })();
@@ -151,6 +173,29 @@
         let rect=new cv.Rect(0,0,100,100);
         dst=rc.roi(rect);
         cv.imshow('ouput-canvas',dst);
+        */
+        var playing=true;
+        var vid=document.querySelector("video");
+        navigator.mediaDevices.getUserMedia({
+            audio:false,
+            video:true
+        }).then((stream) =>{
+            vid.srcObject=stream;
+        }).catch((err)=>{
+            console.log('navigator.MediaDevices.getUserMedia error: ',err.message,err.name);
+        });
+
+        (function loop(){
+            if(playing){
+                var canvas=document.querySelector("canvas");
+                let ctx = canvas.getContext('2d');
+                ctx.drawImage(vid,0,0,canvas.width,canvas.height);
+                setTimeout(loop,1000/30);
+            }
+        })();
+        function stop(){
+            playing=false;
+        }
         
     </script>
     

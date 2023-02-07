@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
     <style>
         .background{
@@ -18,6 +17,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
         }
         .display-zone{
             display :flex;
@@ -53,10 +53,7 @@
             object-fit: contain; 
             display: block;
         }
-
-        /* hide if it would show the error img */
         #out[src=''] {
-        
             opacity: 0;
         }
         .image{
@@ -81,11 +78,13 @@
             border: solid black 1px;
             margin: 5px;
         }
+
+
+
     </style>
 </head>
 <body>
     <div class="background">
-        <div class="grey-rectangle"> 
         <div class="multi-projection">
             <div class="title">Multi projection with canvases</div>
             <div class="multiple-canvas">
@@ -100,13 +99,9 @@
                 <canvas class="small-canva" id="canvas9" width="150p" height="150px" ></canvas>
             </div>
             </div>
-        <div class="second-line">
-            <button id="btn" onclick="stop()" class="btn">Pause</button>
-        </div>
-        </div>
     </div>
-
     <script src="./opencv.js" type="text/javascript">
+        
         var playing=true;
         var vid=document.querySelector("video");
         navigator.mediaDevices.getUserMedia({
@@ -130,7 +125,9 @@
             if(playing){
                 var canvas=document.querySelector("canvas");
                 let ctx = canvas.getContext('2d');
+
                 ctx.drawImage(vid,0,0,canvas.width,canvas.height);
+
                 drawSquare(1,0,0);
                 drawSquare(2,1,0);
                 drawSquare(3,2,0);
@@ -140,6 +137,7 @@
                 drawSquare(7,0,2);
                 drawSquare(8,1,2);
                 drawSquare(9,2,2);
+
                 setTimeout(loop,1000/30);
             }
         })();
@@ -151,6 +149,8 @@
         let rect=new cv.Rect(0,0,100,100);
         dst=rc.roi(rect);
         cv.imshow('ouput-canvas',dst);
+        
+        
         
     </script>
     

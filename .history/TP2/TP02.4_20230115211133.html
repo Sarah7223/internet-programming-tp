@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <style>
         .background{
@@ -16,6 +17,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
         }
         .display-zone{
             display :flex;
@@ -51,7 +53,10 @@
             object-fit: contain; 
             display: block;
         }
+
+        /* hide if it would show the error img */
         #out[src=''] {
+        
             opacity: 0;
         }
         .image{
@@ -59,48 +64,55 @@
             height: 450px; 
             background-color: white;
         }
+
+
+
     </style>
 </head>
 <body>
     <div class="background">
         <div class="grey-rectangle">
             <div class="image">
-                <img src="" id="out" />
+                <video autoplay style="display:none;"></video>
+                <canvas id="canvas" width="450px" height="450px"></canvas>
             </div>
             <div class="first-line">
-                Canva: Insert me an image please ! 
+                Please show your face on me
             </div>
             <div class="second-line">
-                <button class="btn" onClick="onClickHandler(event)">Choose File</button>
-                <div id="image-name" class="image-name">No file chosen</div>
+                <button id="btn" onclick="stop()" class="btn">Pause</button>
             </div>
         </div>
     </div>
+
+
+
     <script>
-        function onClickHandler(ev) {
-            
-            var el = window._protected_reference = document.createElement("INPUT");
-            el.type = "file";
-            el.accept = "image/*";
-            el.multiple = "multiple"; 
-                        el.addEventListener('change', function(ev2) {
-                if (el.files.length) {
-                    document.getElementById('out').src = URL.createObjectURL(el.files[0]);
-                    var listContent=`
-                    ${el.files[0].name}
-                     `;
-                     console.log(listContent);
-                    document.getElementById("image-name").innerHTML = listContent;
-                }
-                new Promise(function(resolve) {
-                setTimeout(function() { console.log(el.files); resolve(); }, 1000);
-                })
-                .then(function() {
-                el = window._protected_reference = undefined;
-                });
-            });
-            el.click(); // open
+        var playing=true;
+        var vid=document.querySelector("video");
+        navigator.mediaDevices.getUserMedia({
+            audio:false,
+            video:true
+        }).then((stream) =>{
+            vid.srcObject=stream;
+        }).catch((err)=>{
+            console.log('navigator.MediaDevices.getUserMedia error: ',err.message,err.name);
+        });
+
+        (function loop(){
+            if(playing){
+                var canvas=document.querySelector("canvas");
+                let ctx = canvas.getContext('2d');
+                ctx.drawImage(vid,0,0,canvas.width,canvas.height);
+                setTimeout(loop,1000/30);
+            }
+        })();
+        function stop(){
+            playing=false;
         }
+
+        
     </script>
+    
 </body>
 </html>

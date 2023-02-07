@@ -2,12 +2,14 @@
 <head>
     <script src="./tween.js/dist/tween.umd.js"></script>
     <style>
-        body{
+        .background{
             display: flex;
+            height: 100%;
+            width: 100%;
             background-color: black;
             justify-content: center;
         }
-        .btn{
+        #btn{
             display: flex;
             height: 30px;
             width: 100px;
@@ -19,9 +21,11 @@
     </style>
 </head>
 <body>
-        <div id="btn" class="btn" >
+    <div class="background">
+        <div id="btn" >
             <div>Click me 🤣</div>
         </div>
+    </div>
     <script>
         function animate(time){
             requestAnimationFrame(animate)
@@ -31,18 +35,20 @@
 
         const box = document.getElementById('btn');
             function moveAway(){
-                const coords = {x: box.getBoundingClientRect().x, y: box.getBoundingClientRect().y} 
+                const coords = {x: box.getBoundingClientRect().x, y: box.getBoundingClientRect().y} // Start at (0, 0)
                 const nextX = Math.floor(Math.random() * screen.width);
                 const nextY = Math.floor(Math.random() * screen.height);
-                const tween = new TWEEN.Tween(coords) 
-                .to({x: nextX, y: nextY}, 1000) 
-                .easing(TWEEN.Easing.Quadratic.Out) 
+                const tween = new TWEEN.Tween(coords) // Create a new tween that modifies 'coords'.
+                .to({x: nextX, y: nextY}, 1000) // Move to (300, 200) in 1 second.
+                .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
                 .onUpdate(() => {
+                // Called after tween.js updates 'coords'.
+                // Move 'box' to the position described by 'coords' with a CSS translation.
                 box.style.setProperty('transform', `translate(${coords.x}px, ${coords.y}px)`)
                 })
-                .start() 
+                .start() // Start the tween immediately.
             }
-            document.querySelector(".btn").addEventListener('mouseover', (e)=>{moveAway()})
+            document.querySelector("#btn").addEventListener('mouseover', (e)=>{moveAway()})
     </script>
 </body>
 </html>
